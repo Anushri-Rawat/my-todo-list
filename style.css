@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.theme-dark {
+  --bg-top-image: 0 0 url(./images/bg-desktop-dark.jpg) no-repeat;
+  --main-bg: hsl(235, 21%, 11%);
+  --todo-bg: hsl(235, 24%, 19%);
+  --todo-shadow: hsl(235, 21%, 11%);
+  --font-color: hsl(234, 39%, 85%);
+  --font-color-hover: #fff;
+}
+
+.theme-light {
+  --bg-top-image: 0 0 url(./images/bg-desktop-light.jpg) no-repeat;
+  --main-bg: hsl(0, 0%, 98%);
+  --todo-bg: hsl(0, 0%, 98%);
+  --todo-shadow: hsl(235, 19%, 35%);
+  --font-color: hsl(236, 9%, 61%);
+  --font-color-hover: hsl(235, 21%, 11%);
+}
+body {
+  font: 400 18px "Josefin Sans", sans-serf;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-top-image);
+  background-color: var(--main-bg);
+  background-size: 100% 255px;
+  color: var(--font-color);
+}
+header,
+main {
+  max-width: 500px;
+  margin: 0 auto;
+}
+header {
+  justify-content: space-between;
+  padding: 52px 0 11px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #fff;
+  letter-spacing: 1rem;
+}
+.add-item {
+  position: relative;
+}
+.add-item input {
+  width: 100%;
+  height: 50px;
+  padding: 0 45px;
+  margin: 30px 0;
+  border: none;
+  border-radius: 5px;
+  background: var(--todo-bg);
+  color: var(--font-color);
+  font: 400 18px "Josefin Sans", sans-serf;
+}
+.add-item span {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--font-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  top: 43px;
+  cursor: pointer;
+}
+.add-item span:hover {
+  background: center url(./images/icon-check.svg) no-repeat,
+    linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  overflow: hidden;
+}
+.content {
+  background: var(--todo-bg);
+  border-radius: 5px;
+  box-shadow: 0 42px 30px -9px var(--todo-shadow);
+}
+.content ul li {
+  list-style-type: none;
+  padding: 15px 40px;
+  min-height: 50px;
+  border-bottom: 1px solid var(--font-color);
+  position: relative;
+}
+ul li input[type="checkbox"] {
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+ul li input[type="checkbox"] ~ .checkmark {
+  border: 1px solid var(--font-color);
+  border-radius: 50px;
+}
+ul li input[type="checkbox"] ~ .checkmark:hover::before {
+  border: 0;
+  padding: 0 !important;
+  background: center url(./images/icon-check.svg) no-repeat,
+    linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+ul li input[type="checkbox"] ~ .checkmark::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--todo-bg);
+  display: block;
+}
+
+ul li input[type="checkbox"]:checked ~ .checkmark::before {
+  background: center url(./images/icon-check.svg) no-repeat,
+    linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+ul li input[type="checkbox"]:checked ~ span {
+  text-decoration: line-through;
+}
+.checkmark {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  height: 22px;
+  width: 22px;
+}
+.remove {
+  background: url(./images/icon-cross.svg) no-repeat;
+  width: 18px;
+  height: 18px;
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 20px;
+}
+
+ul li:hover .remove {
+  display: block;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottom-items {
+  padding: 15px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  align-items: baseline;
+  border-radius: 5px;
+  background: var(--todo-bg);
+}
+.filter-buttons {
+  width: 150px;
+}
+.filter {
+  cursor: pointer;
+}
+.filter:hover {
+  color: hsl(221, 62%, 52%);
+}
+.clear {
+  color: var(--font-color);
+  cursor: pointer;
+}
+.filter-mobile-buttons {
+  display: none;
+}
+@media (max-width: 600px) {
+  .content ul li {
+    padding: 15px 0 15px 40px;
+  }
+  .filter-buttons {
+    display: none;
+  }
+  .filter-mobile-buttons {
+    display: flex;
+    margin-top: 20px;
+  }
+  header,
+  main {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 375px) {
+  header,
+  main {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
